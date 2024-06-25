@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.lab.crud.mapper.MessageMapper">
+    <insert id="insert">
+        INSERT INTO messages (detail)
+        VALUE (#{detail})
+    </insert>
+    <delete id="removeById">
+        DELETE
+        FROM messages
+        WHERE id=#{id}
+    </delete>
+    <update id="updateById">
+        UPDATE messages
+        <set>
+            detail=#{detail},
+            update_time=NOW()
+        </set>
+        WHERE id=#{id};
+    </update>
+    <update id="updateIsDeleteTrue">
+        UPDATE messages
+        <set>
+            is_delete = 1,
+            update_time=NOW()
+        </set>
+        WHERE id=#{id};
+    </update>
+    <update id="updateIsDeleteFalse">
+        UPDATE messages
+        <set>
+            is_delete = 0,
+            update_time=NOW()
+        </set>
+        WHERE id=#{id};
+    </update>
+    <select id="selectAll" resultType="Message">
+        SELECT *
+        FROM messages;
+    </select>
+    <select id="selectById" parameterType="int" resultType="Message">
+        SELECT *
+        FROM messages
+        WHERE id=#{id};
+    </select>
+</mapper>
