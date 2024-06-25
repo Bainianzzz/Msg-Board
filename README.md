@@ -4,7 +4,7 @@
 
 ## 项目架构
 
-![image-20240625205500936](md_img\image-20240625205500936.png)
+![image-20240625205500936](https://github.com/Bainianzzz/Java-crud/blob/main/md_img/image-20240625205500936.png)
 
 ## 技术栈
 
