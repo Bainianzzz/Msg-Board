@@ -2,6 +2,19 @@
 
 实现了留言的crud功能，并通过`is_delete`控制留言的撤回状态，提供了撤回和恢复留言的接口
 
+## 项目架构
+
+![image-20240625205500936](md_img\image-20240625205500936.png)
+
+## 技术栈
+
+- SpringBoot集合框架
+- MyBatis
+
+## 加分项
+
+- 进行参数检查，并对可能发生的异常进行错误处理
+
 ## 数据库构建
 
 ```mysql
@@ -63,6 +76,20 @@ GET /message/{id}
 }
 ```
 
+**错误处理**：
+
+- 无法在数据库找到对应索引的信息
+  - 返回状态码404
+
+- 路径参数不为数字
+
+  ```json
+  {
+      "error": "For input string: \"aaa\"",
+      "status": "BAD_REQUEST"
+  }
+  ```
+
 ## 新增留言
 
 **请求路径：**
@@ -89,6 +116,17 @@ POST /message
 }
 ```
 
+**错误处理**：
+
+- 新增的留言为空字符串
+
+  ```json
+  {
+      "error": "Message should not be empty",
+      "status": "BAD_REQUEST"
+  }
+  ```
+
 ## 删除指定id留言
 
 **请求路径：**
@@ -114,6 +152,20 @@ DELETE /message/{id}
     "status": "OK"
 }
 ```
+
+**错误处理**：
+
+- 无法在数据库找到对应索引的信息
+  - 返回状态码404
+
+- 路径参数不为数字
+
+  ```json
+  {
+      "error": "For input string: \"aaa\"",
+      "status": "BAD_REQUEST"
+  }
+  ```
 
 ## 更改留言信息
 
@@ -142,6 +194,29 @@ PUT /message
 }
 ```
 
+**错误处理**：
+
+- 无法在数据库找到对应索引的留言
+  - 返回状态码404
+
+- 请求体中的id字段无法被解析为数字
+
+  ```json
+  {
+      "error": "JSON parse error: Cannot deserialize value of type `java.lang.Integer` from String \"aaa\": not a valid `java.lang.Integer` value",
+      "status": "BAD_REQUEST"
+  }
+  ```
+
+- 更新的消息内容为空字符串
+
+  ```json
+  {
+      "error": "Message should not be empty",
+      "status": "BAD_REQUEST"
+  }
+  ```
+
 ## 撤回留言
 
 **请求路径：**
@@ -167,6 +242,20 @@ PUT /message/{id}
     "status": "OK"
 }
 ```
+
+**错误处理**：
+
+- 无法在数据库找到对应索引的信息
+  - 返回状态码404
+
+- 路径参数不为数字
+
+  ```json
+  {
+      "error": "For input string: \"aaa\"",
+      "status": "BAD_REQUEST"
+  }
+  ```
 
 ## 恢复撤回留言
 
@@ -194,4 +283,16 @@ PUT /message/{id}
 }
 ```
 
-## 
+**错误处理**：
+
+- 无法在数据库找到对应索引的信息
+  - 返回状态码404
+
+- 路径参数不为数字
+
+  ```json
+  {
+      "error": "For input string: \"aaa\"",
+      "status": "BAD_REQUEST"
+  }
+  ```
