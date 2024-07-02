@@ -1,15 +1,13 @@
 package com.lab.crud.pojo;
 
-import lombok.Getter;
-import org.springframework.http.HttpStatus;
 
-@Getter
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
 public class Info {
-    private final String error;
-    private final HttpStatus status;
-
-    public Info(String error, HttpStatus status) {
-        this.error = error;
-        this.status = status;
-    }
+    private int status;
+    private String message;
+    private Object data;
 }

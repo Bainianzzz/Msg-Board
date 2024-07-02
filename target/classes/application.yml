@@ -8,9 +8,8 @@ spring:
     password: 050109
 
 mybatis:
-  configuration:  # setting
-    auto-mapping-behavior: full #全自动映射
-    map-underscore-to-camel-case: true #开启驼峰映射
-    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl #日志打印方式
-  type-aliases-package: com.lab.crud.pojo #用于设置类型别名包扫描路径的属性
-  mapper-locations: classpath:mapper/*.xml # 再resource文件下寻找mapper.xml文件
+  configuration:
+    auto-mapping-behavior: full
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  mapper-locations: classpath:mapper/*.xml
