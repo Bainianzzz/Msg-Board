@@ -5,14 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b98a9291-7ebc-4bbb-a69e-017ad93fe8df" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/config/WebConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/interceptor/TokenCheckInterceptor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/pojo/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/utils/JwtUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/Impl/LoginServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/Impl/LoginServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/Impl/MessageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/Impl/MessageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/Impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/Impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/lab/crud/CrudApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/lab/crud/ApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mapper/MessageMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mapper/MessageMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/pojo/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/pojo/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/lab/crud/ApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/lab/crud/ApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,8 +23,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="spring-beans.schema" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -53,6 +53,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.ApplicationTests.genJWT.executor": "Run",
+    "JUnit.ApplicationTests.getJwtTest.executor": "Run",
     "JUnit.ApplicationTests.jwtGenerate.executor": "Run",
     "JUnit.CrudApplicationTests.contextLoads.executor": "Run",
     "Maven.crud [clean].executor": "Run",
@@ -87,8 +88,8 @@
       <recent name="com.lab.crud.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ApplicationTests.genJWT">
-    <configuration name="ApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager">
+    <configuration name="JwtTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MessageBoard" />
       <extension name="coverage">
         <pattern>
@@ -97,14 +98,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.lab.crud" />
-      <option name="MAIN_CLASS_NAME" value="com.lab.crud.ApplicationTests" />
+      <option name="MAIN_CLASS_NAME" value="com.lab.crud.JwtTests" />
       <option name="METHOD_NAME" value="contextLoads" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationTests.genJWT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JwtTests.getJwtTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MessageBoard" />
       <extension name="coverage">
         <pattern>
@@ -113,14 +114,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.lab.crud" />
-      <option name="MAIN_CLASS_NAME" value="com.lab.crud.ApplicationTests" />
-      <option name="METHOD_NAME" value="genJWT" />
+      <option name="MAIN_CLASS_NAME" value="com.lab.crud.JwtTests" />
+      <option name="METHOD_NAME" value="getJwtTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationTests.jwtGenerate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="JwtTests.jwtGenerate" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MessageBoard" />
       <extension name="coverage">
         <pattern>
@@ -129,7 +130,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.lab.crud" />
-      <option name="MAIN_CLASS_NAME" value="com.lab.crud.ApplicationTests" />
+      <option name="MAIN_CLASS_NAME" value="com.lab.crud.JwtTests" />
       <option name="METHOD_NAME" value="jwtGenerate" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
@@ -145,9 +146,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ApplicationTests.genJWT" />
-        <item itemvalue="JUnit.ApplicationTests.jwtGenerate" />
-        <item itemvalue="JUnit.CrudApplicationTests.contextLoads" />
+        <item itemvalue="JUnit.JwtTests.getJwtTest" />
+        <item itemvalue="JUnit.JwtTests.jwtGenerate" />
       </list>
     </recent_temporary>
   </component>
@@ -176,7 +176,10 @@
       <workItem from="1719335294356" duration="661000" />
       <workItem from="1719417727960" duration="338000" />
       <workItem from="1719912922272" duration="2802000" />
-      <workItem from="1719974237840" duration="5282000" />
+      <workItem from="1719974237840" duration="5971000" />
+      <workItem from="1719991510949" duration="4881000" />
+      <workItem from="1720020394393" duration="6000" />
+      <workItem from="1720026544461" duration="2532000" />
     </task>
     <servers />
   </component>
