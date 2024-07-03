@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class JwtUtils {
-    SecretKey key = Jwts.SIG.HS256.key().build(); //or HS384.key() or HS512.key()
+    SecretKey key = Jwts.SIG.HS512.key().build();
     private long cnt;
 
     public String getJwt(User user){

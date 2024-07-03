@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b98a9291-7ebc-4bbb-a69e-017ad93fe8df" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/config/WebConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/interceptor/TokenCheckInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/pojo/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/utils/JwtUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/pojo/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/pojo/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/lab/crud/ApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/lab/crud/ApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/utils/JwtUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/utils/JwtUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +49,7 @@
     "JUnit.ApplicationTests.getJwtTest.executor": "Run",
     "JUnit.ApplicationTests.jwtGenerate.executor": "Run",
     "JUnit.CrudApplicationTests.contextLoads.executor": "Run",
+    "JUnit.JwtTests.getJwtTest.executor": "Run",
     "Maven.crud [clean].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
@@ -88,7 +82,7 @@
       <recent name="com.lab.crud.controller" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.JwtTests.getJwtTest">
     <configuration name="JwtTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MessageBoard" />
       <extension name="coverage">
@@ -179,7 +173,7 @@
       <workItem from="1719974237840" duration="5971000" />
       <workItem from="1719991510949" duration="4881000" />
       <workItem from="1720020394393" duration="6000" />
-      <workItem from="1720026544461" duration="2532000" />
+      <workItem from="1720026544461" duration="2942000" />
     </task>
     <servers />
   </component>
