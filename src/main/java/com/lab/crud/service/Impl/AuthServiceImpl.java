@@ -18,14 +18,14 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     //若用户名和密码成功匹配则生成tokens
-    public Map<String, String> checkPasswd(String username, String v_password){
+    public Map<String, String> checkPasswd(String username, String v_password) {
         String password = userMapper.findPasswdByUsername(username);
         if (password != null && password.equals(v_password)) {
             String token = jwtUtils.getJwt(userMapper.findIdByUsername(username), username, 15);
             String refreshToken = jwtUtils.getJwt(userMapper.findIdByUsername(username), username, 60 * 24 * 2);
             Map<String, String> tokens = new HashMap<>();
-            tokens.put("token", token);
-            tokens.put("refresh_token", refreshToken);
+            tokens.put("token", "Bearer " + token);
+            tokens.put("refresh_token", "Bearer " + refreshToken);
             return tokens;
         }
         return null;

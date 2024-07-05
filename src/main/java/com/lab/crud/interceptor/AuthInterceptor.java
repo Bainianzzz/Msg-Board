@@ -26,7 +26,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         log.info("preHandle: {}", request.getRequestURI());
         // 检查token是否将要过期或正常过期（refresh_token仍有效），若是则更新token
         String token = request.getHeader("Authorization").split(" ")[1];
-        String refreshToken = request.getParameter("refresh_token");
+        String refreshToken = request.getParameter("refresh_token").split(" ")[1];
         // 检验token和refresh_token是否都在请求中
         if (token == null || refreshToken == null) {
             response.getWriter().write("The request does not include the token or refresh_token in right field.");

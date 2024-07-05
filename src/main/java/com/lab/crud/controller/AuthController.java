@@ -22,12 +22,10 @@ public class AuthController {
     // 用户登录
     // refresh_token使登录状态可维持两天，但需30分钟刷新一次token令牌
     @PostMapping("/login")
-    public ResponseEntity<Info> login(String username, String password, HttpServletResponse response) {
+    public ResponseEntity<Info> login(String username, String password) {
         Map<String, String> tokens = authService.checkPasswd(username, password);
         if (tokens != null) {
             log.info("{} successfully logged in", username);
-            response.addHeader("Authorization", "Bearer " + tokens.get("token"));
-            response.addHeader("refresh_token", tokens.get("refresh_token"));
             return ResponseEntity.status(HttpStatus.OK).
                     body(new Info(20001, "登陆成功", tokens));
         } else {
