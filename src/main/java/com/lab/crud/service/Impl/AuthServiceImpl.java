@@ -22,7 +22,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     //若用户名和密码成功匹配则生成tokens
-    public String checkPasswd(String username, String v_password) throws Exception {
+    public Map<String, String> checkPasswd(String username, String v_password){
         String password = userMapper.findPasswdByUsername(username);
         if (password != null && password.equals(v_password)) {
             String token = jwtUtils.getJwt(userMapper.findIdByUsername(username), username, 30);
@@ -30,22 +30,16 @@ public class AuthServiceImpl implements AuthService {
             Map<String, String> tokens = new HashMap<>();
             tokens.put("token", token);
             tokens.put("refresh_token", refreshToken);
-            //将token转化为json格式字符串
-            ObjectMapper mapper = new ObjectMapper();
-            mapper.configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, true);
-            return mapper.writeValueAsString(tokens);
+            return tokens;
         }
         return null;
     }
 
     @Override
     //校验refresh_token，并签发新的token
-    public String refreshTheToken(String refreshToken) throws RuntimeException, JsonProcessingException {
+    public Map<String, String> refreshTheToken(String refreshToken) throws RuntimeException{
         Claims payLoad = jwtUtils.parseJwt(refreshToken);
         String newToken = jwtUtils.getJwt(payLoad.get("id", Integer.class), payLoad.get("username", String.class), 15);
-        //将token转化为json格式字符串
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(JsonGenerator.Feature.ESCAPE_NON_ASCII, true);
-        return mapper.writeValueAsString(Map.of("token", newToken));
+        return Map.of("token", newToken);
     }
 }

@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 public class AuthController {
     private static final Logger log = LoggerFactory.getLogger(AuthController.class);
@@ -26,21 +28,14 @@ public class AuthController {
     // refresh_token使登录状态可维持两天，但需30分钟刷新一次token令牌
     @PostMapping("/login")
     public ResponseEntity<Info> login(String username, String password) {
-        try {
-            String tokens = authService.checkPasswd(username, password);
-            if (tokens != null) {
-                return ResponseEntity.status(HttpStatus.OK).
-                        body(new Info(20001, "登陆成功", tokens));
-            }
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            if (e instanceof JsonProcessingException) {
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).
-                        body(new Info(50001, "服务器将tokens序列化为json时出错", null));
-            }
+        Map<String, String> tokens = authService.checkPasswd(username, password);
+        if (tokens != null) {
+            return ResponseEntity.status(HttpStatus.OK).
+                    body(new Info(20001, "登陆成功", tokens));
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).
+                    body(new Info(40101, "登陆失败", null));
         }
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).
-                body(new Info(40101, "登陆失败", null));
     }
 
     //刷新token令牌
@@ -53,7 +48,7 @@ public class AuthController {
                     body(new Info(42801, "请求头中未包含refresh_token字段，无法刷新token", null));
         } else {
             try {
-                String newToken = authService.refreshTheToken(refreshToken);
+                Map<String, String> newToken = authService.refreshTheToken(refreshToken);
                 return ResponseEntity.status(HttpStatus.OK).
                         body(new Info(20002, "token令牌更新成功", newToken));
             } catch (RuntimeException e) {
@@ -65,10 +60,6 @@ public class AuthController {
                     return ResponseEntity.status(HttpStatus.UNAUTHORIZED).
                             body(new Info(40103, "refresh_token令牌过期，请重新登录", null));
                 }
-            } catch (JsonProcessingException e) {
-                log.error(e.getMessage());
-                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).
-                        body(new Info(50001, "服务器将tokens序列化为json时出错", null));
             }
         }
         return null;
