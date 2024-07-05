@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b98a9291-7ebc-4bbb-a69e-017ad93fe8df" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/config/WebConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/interceptor/TokenCheckInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/interceptor/AuthInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/interceptor/AuthInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/interceptor/AuthInterceptor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/AuthService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/Impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/Impl/AuthServiceImpl.java" afterDir="false" />
     </list>
@@ -198,7 +200,7 @@
       <workItem from="1720020394393" duration="6000" />
       <workItem from="1720026544461" duration="3864000" />
       <workItem from="1720060541780" duration="4948000" />
-      <workItem from="1720162366393" duration="13109000" />
+      <workItem from="1720162366393" duration="20897000" />
     </task>
     <servers />
   </component>

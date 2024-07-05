@@ -13,6 +13,6 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(authInterceptor).addPathPatterns("/refresh_token","/message/**","/user/**");
+        registry.addInterceptor(authInterceptor).addPathPatterns("/**").excludePathPatterns("/login");
     }
 }
