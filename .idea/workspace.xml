@@ -5,21 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b98a9291-7ebc-4bbb-a69e-017ad93fe8df" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a195e502-8024-4cb8-b7a2-cedbc02121ef.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a195e502-8024-4cb8-b7a2-cedbc02121ef.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/controller/AuthController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/controller/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/mapper/LoginMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/mapper/LoginMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/pojo/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/pojo/Message.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/pojo/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/pojo/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/Impl/LoginServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/Impl/LoginServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/LoginService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/utils/JwtUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/utils/JwtUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/LoginMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/LoginMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/lab/crud/JwtTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/lab/crud/JwtTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/lab/crud/pojo/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lab/crud/pojo/Message.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/controller/LoginController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/mapper/LoginMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/Impl/LoginServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/Impl/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/LoginService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/LoginMapper.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/mapper/UserMapper.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,7 +91,7 @@
       <recent name="com.lab.crud.controller" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.JwtTests.parseJwtTest">
+  <component name="RunManager" selected="Spring Boot.CrudApplication">
     <configuration name="JwtTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="MessageBoard" />
       <extension name="coverage">
@@ -207,7 +201,7 @@
       <workItem from="1720020394393" duration="6000" />
       <workItem from="1720026544461" duration="3864000" />
       <workItem from="1720060541780" duration="4948000" />
-      <workItem from="1720162366393" duration="5573000" />
+      <workItem from="1720162366393" duration="10730000" />
     </task>
     <servers />
   </component>
