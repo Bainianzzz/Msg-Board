@@ -3,6 +3,7 @@ package com.lab.crud.pojo;
 import lombok.Data;
 
 import javax.xml.transform.sax.SAXResult;
+import java.time.LocalDateTime;
 
 @Data
 public class User {
@@ -15,4 +16,6 @@ public class User {
     private String avatar;
     private int qq;
     private int phone;
+    private LocalDateTime createAt;
+    private LocalDateTime updateAt;
 }

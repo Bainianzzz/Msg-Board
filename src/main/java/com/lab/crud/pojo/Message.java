@@ -10,7 +10,7 @@ public class Message {
     private Integer userId;
     private Integer parentId;
     private String detail;
-    private LocalDateTime createTime;
-    private LocalDateTime updateTime;
+    private LocalDateTime createAt;
+    private LocalDateTime updateAt;
     private boolean isDelete;
 }
