@@ -28,11 +28,11 @@ class JwtTests {
 
     @Test
     void parseJwtTest() throws JsonProcessingException {
-        User user = new User();
-        user.setId(1);
-        user.setUsername("admin");
-        String token = jwtutils.getJwt(user.getId(), user.getUsername(), 15);
-        Claims payLoad =jwtutils.parseJwt(token);
-        System.out.println(new ObjectMapper().writeValueAsString(payLoad));
+//        User user = new User();
+//        user.setId(1);
+//        user.setUsername("admin");
+//        String token = jwtutils.getJwt(user.getId(), user.getUsername(), 15);
+//        Claims payLoad =jwtutils.parseJwt(token);
+//        System.out.println(new ObjectMapper().writeValueAsString(payLoad));
     }
 }

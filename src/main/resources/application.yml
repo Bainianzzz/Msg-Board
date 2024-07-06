@@ -14,3 +14,6 @@ mybatis:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
   mapper-locations: classpath:mapper/*.xml
+
+jwt:
+  signingKey: tNLuNxM4tmOWUsO1oMmKwV5/tfel3G56IZlRe02y9gM=

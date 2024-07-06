@@ -16,6 +16,4 @@ public class User {
     private String avatar;
     private int qq;
     private int phone;
-    private LocalDateTime createAt;
-    private LocalDateTime updateAt;
 }
