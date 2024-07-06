@@ -1,5 +1,6 @@
 package com.lab.crud.interceptor;
 
+import com.lab.crud.exception.TokenDyingException;
 import com.lab.crud.utils.JwtUtils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -44,21 +45,20 @@ public class AuthInterceptor implements HandlerInterceptor {
         // 检验token，若属于濒死状态或正常过期状态，校验refresh_token，若成功则刷新token
         try {
             jwtUtils.parseJwt(token);
+            return true;
         } catch (RuntimeException e) {
-            log.error(e.getMessage());
             if (e instanceof MalformedJwtException || e instanceof SignatureException) {
+                log.error(e.getMessage());
                 response.setStatus(HttpStatus.UNAUTHORIZED.value());
                 response.getWriter().write(e.getMessage());
                 return false;
-            } else if (e instanceof ExpiredJwtException) {
+            } else if (e instanceof ExpiredJwtException || e instanceof TokenDyingException) {
                 // 校验refresh_token，尝试刷新token
                 try {
-                    Claims claims = jwtUtils.parseJwt(refreshToken);
-                    Integer id = (Integer) claims.get("id");
-                    String username = (String) claims.get("username");
-                    token = jwtUtils.getJwt(id, username, 15);
+                    token = jwtUtils.renewToken(refreshToken);
                     response.addHeader("Authorization", "Bearer " + token);
-                    log.info("{} refreshed token", username);
+                    log.info("refreshed token");
+                    return true;
                 } catch (RuntimeException err) {
                     log.error(err.getMessage());
                     response.setStatus(HttpStatus.UNAUTHORIZED.value());
@@ -66,8 +66,9 @@ public class AuthInterceptor implements HandlerInterceptor {
                     return false;
                 }
             }
+            log.error(e.getMessage());
+            return false;
         }
-        return true;
     }
 }
 

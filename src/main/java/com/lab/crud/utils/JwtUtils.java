@@ -1,8 +1,7 @@
 package com.lab.crud.utils;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
-import io.jsonwebtoken.Jwts;
+import com.lab.crud.exception.TokenDyingException;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,6 +25,28 @@ public class JwtUtils {
         return new SecretKeySpec(encodedKey, "HMACSHA256");
     }
 
+//    public String verifyTokens(String token, String refreshToken) throws Exception {
+//        try {
+//            parseJwt(token);
+//            return token;
+//        } catch (RuntimeException e) {
+//            if (e instanceof MalformedJwtException || e instanceof SignatureException) {
+//                throw e;
+//            } else if (e instanceof ExpiredJwtException) {
+//                token = renewToken(token, refreshToken);
+//            }
+//            throw new Exception(e);
+//        }
+//    }
+
+    // 检验token，若属于濒死状态或正常过期状态，校验refresh_token，若成功则刷新token
+    public String renewToken(String refreshToken) throws RuntimeException {
+        Claims newClaims = parseJwt(refreshToken);
+        Integer id = (Integer) newClaims.get("id");
+        String username = (String) newClaims.get("username");
+        return getJwt(id, username, 15);
+    }
+
     public String getJwt(int id, String username, int expiration) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", id);
@@ -45,6 +66,9 @@ public class JwtUtils {
                 .verifyWith(getSecretKey())
                 .build()
                 .parseSignedClaims(jwt);
+        if (claims.getPayload().getExpiration().before(new Date(System.currentTimeMillis() - 1000 * 60 * 5))) {
+            throw new TokenDyingException();
+        }
         return claims.getPayload();
     }
 }

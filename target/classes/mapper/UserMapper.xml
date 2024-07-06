@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lab.crud.mapper.UserMapper">
+    <insert id="insertUser">
+        insert into users(phone, password, create_at, update_at)
+            value (#{phone}, #{password}, now(), now());
+    </insert>
+    <update id="updateUser">
+        update users
+        <set>
+            <if test="username!=null and username!=''">
+                username=#{username},
+            </if>
+            <if test="gender!=null and gender!=''">
+                gender=#{gender},
+            </if>
+            <if test="password!=null and password!=''">
+                password=#{password},
+            </if>
+            <if test="email!=null and email!=''">
+                email=#{email},
+            </if>
+            <if test="introduction!=null and introduction!=''">
+                introduction=#{introduction},
+            </if>
+            <if test="avatar!=null and avatar!=''">
+                avatar=#{avatar},
+            </if>
+            <if test="qq!=null and qq>10000">
+                qq=#{qq},
+            </if>
+            <if test="phone!=null and phone>0">
+                phone=#{phone},
+            </if>
+            update_at=now(),
+        </set>
+        where id=#{id};
+    </update>
+    <delete id="deleteUser">
+        delete from users
+        where id=#{id}
+    </delete>
+    <select id="getUserById" resultType="com.lab.crud.pojo.User">
+        select id,
+               username,
+               gender,
+               email,
+               introduction,
+               avatar,
+               qq,
+               phone
+        from users
+        where id = #{id};
+    </select>
+    <select id="getUserByPhone" resultType="com.lab.crud.pojo.User">
+        select password, id
+        from users
+        where phone = #{phone};
+    </select>
+</mapper>

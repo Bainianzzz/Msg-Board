@@ -1,12 +1,9 @@
 package com.lab.crud.controller;
 
-import com.lab.crud.exception.RegisterInfoBlankException;
 import com.lab.crud.exception.UserNotFoundException;
 import com.lab.crud.pojo.Info;
 import com.lab.crud.pojo.User;
 import com.lab.crud.service.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,8 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
-public class UserController {
-    private static final Logger log = LoggerFactory.getLogger(AuthController.class);
+public class UserController extends ObjectController{
     @Autowired
     private UserService userService;
 
@@ -24,6 +20,7 @@ public class UserController {
     public ResponseEntity<Info> getUser(@PathVariable String id) {
         try {
             User user = userService.getUserById(Integer.parseInt(id));
+            log.info("getUser: {}", user.getId());
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new Info(20002, "success", user));
         } catch (UserNotFoundException e) {
@@ -45,6 +42,7 @@ public class UserController {
                 user.setId(Integer.parseInt(id));
             }
             userService.updateUser(user);
+            log.info("updateUser: {}", user.getId());
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new Info(20004, "success", null));
         } catch (UserNotFoundException e) {
@@ -63,6 +61,7 @@ public class UserController {
     public ResponseEntity<Info> deleteUser(@PathVariable String id) {
         try {
             userService.deleteUserById(Integer.parseInt(id));
+            log.info("deleteUser: {}", id);
             return ResponseEntity.status(HttpStatus.OK)
                     .body(new Info(20004, "success", null));
         } catch (UserNotFoundException e) {
