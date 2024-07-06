@@ -25,19 +25,15 @@ public class JwtUtils {
         return new SecretKeySpec(encodedKey, "HMACSHA256");
     }
 
-//    public String verifyTokens(String token, String refreshToken) throws Exception {
-//        try {
-//            parseJwt(token);
-//            return token;
-//        } catch (RuntimeException e) {
-//            if (e instanceof MalformedJwtException || e instanceof SignatureException) {
-//                throw e;
-//            } else if (e instanceof ExpiredJwtException) {
-//                token = renewToken(token, refreshToken);
-//            }
-//            throw new Exception(e);
-//        }
-//    }
+    //判断token是否符合格式
+    public boolean availableToken(String... tokens) {
+        for (String token : tokens) {
+            if (token == null || !token.startsWith("Bearer ")) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     // 检验token，若属于濒死状态或正常过期状态，校验refresh_token，若成功则刷新token
     public String renewToken(String refreshToken) throws RuntimeException {
@@ -47,6 +43,7 @@ public class JwtUtils {
         return getJwt(id, username, 15);
     }
 
+    //生成token
     public String getJwt(int id, String username, int expiration) {
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", id);
@@ -61,6 +58,7 @@ public class JwtUtils {
                 .compact();
     }
 
+    //校验token，并判断其是否过期或濒死
     public Claims parseJwt(String jwt) {
         Jws<Claims> claims = Jwts.parser()
                 .verifyWith(getSecretKey())

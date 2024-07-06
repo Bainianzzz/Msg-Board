@@ -23,25 +23,15 @@ public class AuthInterceptor implements HandlerInterceptor {
     private JwtUtils jwtUtils;
 
     @Override
+    // 检查token是否将要过期或正常过期（refresh_token仍有效），若是则更新token
     public boolean preHandle(HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull Object handler)
             throws Exception {
         log.info("preHandle: {}", request.getRequestURI());
-        // 检查token是否将要过期或正常过期（refresh_token仍有效），若是则更新token
-        // 检验token和refresh_token是否都在请求头中
+        // 检验token和refresh_token是否都在请求头中并符合格式
         String token = request.getHeader("Authorization");
         String refreshToken = request.getHeader("refresh_token");
-        if (token == null || refreshToken == null) {
-            response.setStatus(HttpStatus.PRECONDITION_REQUIRED.value());
-            response.getWriter().write("The request does not include the token or refresh_token in right field.");
-            return false;
-        }
-        if (!token.startsWith("Bearer ") || !refreshToken.startsWith("Bearer ")) {
-            response.setStatus(HttpStatus.BAD_REQUEST.value());
-            response.getWriter().write("The format of the token and refresh_token fields is incorrect");
-            return false;
-        }
+        if (!jwtUtils.availableToken(token, refreshToken)) return false;
         token = token.replace("Bearer ", "");
-        refreshToken = refreshToken.replace("Bearer ", "");
         // 检验token，若属于濒死状态或正常过期状态，校验refresh_token，若成功则刷新token
         try {
             jwtUtils.parseJwt(token);
@@ -55,7 +45,7 @@ public class AuthInterceptor implements HandlerInterceptor {
             } else if (e instanceof ExpiredJwtException || e instanceof TokenDyingException) {
                 // 校验refresh_token，尝试刷新token
                 try {
-                    token = jwtUtils.renewToken(refreshToken);
+                    token = jwtUtils.renewToken(refreshToken.replace("Bearer ", ""));
                     response.addHeader("Authorization", "Bearer " + token);
                     log.info("refreshed token");
                     return true;
