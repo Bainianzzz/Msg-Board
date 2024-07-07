@@ -1020,7 +1020,7 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
     </schema>
     <schema id="296" parent="1" name="msg_board">
       <Current>1</Current>
-      <LastIntrospectionLocalTimestamp>2024-07-06.14:06:37</LastIntrospectionLocalTimestamp>
+      <LastIntrospectionLocalTimestamp>2024-07-07.07:20:46</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="297" parent="1" name="mysql.infoschema">
@@ -1056,12 +1056,12 @@ sys|schema||mysql.sys|localhost|TRIGGER|G</Grants>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="304" parent="301" name="user_id">
+    <column id="304" parent="301" name="uid">
       <DasType>int unsigned|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="305" parent="301" name="parent_id">
+    <column id="305" parent="301" name="pid">
       <DasType>int unsigned|0s</DasType>
       <Position>3</Position>
     </column>

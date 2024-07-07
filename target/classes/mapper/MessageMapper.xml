@@ -3,5 +3,33 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lab.crud.mapper.MessageMapper">
+    <insert id="insertMessage">
 
+    </insert>
+
+    <update id="updateMessage">
+
+    </update>
+
+    <delete id="deleteMessageById">
+
+    </delete>
+
+    <select id="selectMessageByPid" resultType="com.lab.crud.pojo.Message">
+        select id, uid, pid, detail, update_time, is_delete
+        from messages
+        where pid=#{pid}
+    </select>
+
+    <select id="selectMessagesByUId" resultType="com.lab.crud.pojo.Message">
+        select id, uid, pid, detail, update_time, is_delete
+        from messages
+        where uid=#{uid}
+        limit #{end} offset #{begin}
+    </select>
+    <select id="selectMessageById" resultType="com.lab.crud.pojo.Message">
+        select id, uid, pid, detail, update_time, is_delete
+        from messages
+        where id=#{id}
+    </select>
 </mapper>

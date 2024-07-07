@@ -7,8 +7,9 @@ import java.util.List;
 
 @Mapper
 public interface MessageMapper {
-    List<Message> selectMessagesById(int id,int page);
-    List<Message> selectMessagesByUserId(int userId,int page);
+    Message selectMessageById(int id);
+    Message selectMessageByPid(int pid);
+    List<Message> selectMessagesByUId(int uid,int begin,int end);
     void insertMessage(Message message);
     void updateMessage(Message message);
     void deleteMessageById(int id);

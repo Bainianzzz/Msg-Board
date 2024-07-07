@@ -7,8 +7,8 @@ import java.time.LocalDateTime;
 @Data
 public class Message {
     private Integer id;
-    private Integer userId;
-    private Integer parentId;
+    private Integer uid;
+    private Integer pid;
     private String detail;
     private LocalDateTime createAt;
     private LocalDateTime updateAt;

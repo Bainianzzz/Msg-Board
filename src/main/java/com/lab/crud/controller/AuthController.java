@@ -43,7 +43,7 @@ public class AuthController extends ObjectController {
             authService.createUser(user.getPhone(), user.getPassword());
             log.info("created user {}", user.getPhone());
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(new Info(20003, "success", null));
+                    .body(new Info(20002, "success", null));
         } catch (RegisterInfoBlankException e) {
             log.error(e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).

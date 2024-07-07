@@ -15,11 +15,21 @@
 
     </delete>
 
-    <select id="selectMessagesById" resultType="com.lab.crud.pojo.Message">
-
+    <select id="selectMessageByPid" resultType="com.lab.crud.pojo.Message">
+        select id, uid, pid, detail, update_time, is_delete
+        from messages
+        where pid=#{pid}
     </select>
 
-    <select id="selectMessagesByUserId" resultType="com.lab.crud.pojo.Message">
-
+    <select id="selectMessagesByUId" resultType="com.lab.crud.pojo.Message">
+        select id, uid, pid, detail, update_time, is_delete
+        from messages
+        where uid=#{uid}
+        limit #{end} offset #{begin}
+    </select>
+    <select id="selectMessageById" resultType="com.lab.crud.pojo.Message">
+        select id, uid, pid, detail, update_time, is_delete
+        from messages
+        where id=#{id}
     </select>
 </mapper>

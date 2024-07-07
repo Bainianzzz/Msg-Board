@@ -22,7 +22,7 @@ public class UserController extends ObjectController{
             User user = userService.getUserById(Integer.parseInt(id));
             log.info("getUser: {}", user.getId());
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(new Info(20002, "success", user));
+                    .body(new Info(20003, "success", user));
         } catch (UserNotFoundException e) {
             log.error(e.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).
@@ -63,7 +63,7 @@ public class UserController extends ObjectController{
             userService.deleteUserById(Integer.parseInt(id));
             log.info("deleteUser: {}", id);
             return ResponseEntity.status(HttpStatus.OK)
-                    .body(new Info(20004, "success", null));
+                    .body(new Info(20005, "success", null));
         } catch (UserNotFoundException e) {
             log.error(e.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).
