@@ -4,7 +4,6 @@ import com.lab.crud.exception.MessageNotFoundException;
 import com.lab.crud.pojo.Info;
 import com.lab.crud.pojo.Message;
 import com.lab.crud.service.MessageService;
-import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,9 +39,21 @@ public class MessageController extends ObjectController {
     }
 
     //获取用户的所有留言
-    @GetMapping("/user/{page}")
-    public ResponseEntity<Info> getMessageByUserId(HttpServletRequest request, @PathVariable String page) {
-        return null;
+    @GetMapping("/user/{uid}")
+    public ResponseEntity<Info> getMessageByUserId(@PathVariable String uid,String page) {
+        try {
+            List<Message> messages = messageService.getMessagesByUid(Integer.parseInt(uid), Integer.parseInt(page));
+            return ResponseEntity.status(HttpStatus.OK).
+                    body(new Info(20007, "success", messages));
+        }catch (NumberFormatException e) {
+            log.error(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).
+                    body(new Info(40001, e.getMessage(), null));
+        } catch (MessageNotFoundException e) {
+            log.error(e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).
+                    body(new Info(40402, e.getMessage(), null));
+        }
     }
 
     //发布留言或者回复留言

@@ -16,7 +16,7 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     //递归查询出某条留言及其所有子留言
-    public void getMessagesById(int id,List<Message> messages){
+    public void getMessagesById(int id, List<Message> messages) {
         Message message = messageMapper.selectMessageById(id);
         if (message == null) return;
 
@@ -24,12 +24,16 @@ public class MessageServiceImpl implements MessageService {
 
         Message childMessage = messageMapper.selectMessageByPid(message.getId());
         if (childMessage == null) return;
-        getMessagesById(childMessage.getId(),messages);
+        getMessagesById(childMessage.getId(), messages);
     }
 
     @Override
-    public List<Message> getMessagesByUid(int pid, int page) {
-        return List.of();
+    public List<Message> getMessagesByUid(int uid, int page) throws MessageNotFoundException {
+        int begin = (page - 1) * page;
+        int end = page + 10;
+        List<Message> messages = messageMapper.selectMessagesByUId(uid, begin, end);
+        if (messages == null) throw new MessageNotFoundException();
+        return messages;
     }
 
     @Override
