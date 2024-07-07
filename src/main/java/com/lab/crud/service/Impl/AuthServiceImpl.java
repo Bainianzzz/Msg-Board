@@ -22,8 +22,8 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     //若用户名和密码成功匹配则生成tokens
-    public Map<String, String> checkPasswd(String phone, String v_password) throws LoginException {
-        User user = userMapper.getUserByPhone(phone);
+    public Map<String, String> checkPasswd(String phone, String v_password) throws LoginException, NumberFormatException {
+        User user = userMapper.getUserByPhone(Integer.parseInt(phone));
         if (user != null && user.getPassword().equals(v_password)) {
             String token = jwtUtils.getJwt(user.getId(), phone, 15);
             String refreshToken = jwtUtils.getJwt(user.getId(), phone, 60 * 24 * 2);
@@ -44,7 +44,7 @@ public class AuthServiceImpl implements AuthService {
         } else {
             try {
                 userMapper.insertUser(phone, password);
-            }catch (DuplicateKeyException e){
+            } catch (DuplicateKeyException e) {
                 throw new DuplicateKeyException("user is already exist");
             }
         }

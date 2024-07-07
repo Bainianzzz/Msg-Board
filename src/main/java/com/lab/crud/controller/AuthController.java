@@ -31,6 +31,8 @@ public class AuthController extends ObjectController {
         } catch (LoginException e) {
             log.info("{} failed to login", phone);
             return error(e, HttpStatus.UNAUTHORIZED, 40101);
+        } catch (NullPointerException e) {
+            return error(e, HttpStatus.BAD_REQUEST, 40001);
         }
     }
 
