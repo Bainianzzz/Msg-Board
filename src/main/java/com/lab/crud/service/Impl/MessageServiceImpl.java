@@ -1,7 +1,6 @@
 package com.lab.crud.service.Impl;
 
 import com.lab.crud.exception.MessageEmptyException;
-import com.lab.crud.exception.MessageIncompleteException;
 import com.lab.crud.exception.MessageNotFoundException;
 import com.lab.crud.exception.UserNotFoundException;
 import com.lab.crud.mapper.MessageMapper;
@@ -26,7 +25,6 @@ public class MessageServiceImpl implements MessageService {
     public void getMessagesById(int id, List<Message> messages) {
         Message message = messageMapper.selectMessageById(id);
         if (message == null) return;
-
         messages.add(message);
 
         Message[] childMessage = messageMapper.selectMessageByPid(message.getId());
@@ -56,12 +54,14 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public void updateMessage(Message message) {
-
+    public void updateMessage(Message message) throws MessageEmptyException {
+        if (messageMapper.selectMessageById(message.getId()) == null) throw new MessageEmptyException();
+        messageMapper.updateMessage(message);
     }
 
     @Override
-    public void deleteMessage(int id) {
-
+    public void deleteMessage(int id) throws MessageEmptyException {
+        if (messageMapper.selectMessageById(id) == null) throw new MessageEmptyException();
+        messageMapper.deleteMessageById(id);
     }
 }

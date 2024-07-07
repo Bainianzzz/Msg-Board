@@ -61,22 +61,40 @@ public class MessageController extends ObjectController {
             return error(e, HttpStatus.NOT_FOUND, 40401);
         } catch (MessageNotFoundException e) {
             return error(e, HttpStatus.NOT_FOUND, 40402);
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             return error(new MessageIncompleteException(), HttpStatus.BAD_REQUEST, 40003);
         } catch (MessageEmptyException e) {
             return error(e, HttpStatus.BAD_REQUEST, 40002);
         }
     }
 
-    //修改留言信息或者撤回留言（软删除）
+    //修改留言信息
     @PutMapping("/{id}")
-    public ResponseEntity<Info> updateMessage(@RequestBody Message message) {
-        return null;
+    public ResponseEntity<Info> updateMessage(@RequestBody Message message, @PathVariable String id) {
+        try {
+            message.setId(Integer.parseInt(id));
+            messageService.updateMessage(message);
+            if (message.getDetail() != null && !message.getDetail().isBlank())
+                log.info("update message detail: {}", message.getDetail());
+            return success(null, 20009);
+        } catch (NumberFormatException e) {
+            return error(e, HttpStatus.BAD_REQUEST, 40001);
+        } catch (MessageEmptyException e) {
+            return error(e, HttpStatus.BAD_REQUEST, 40002);
+        }
     }
 
     //硬删除留言
     @DeleteMapping("/{id}")
     public ResponseEntity<Info> deleteMessage(@PathVariable String id) {
-        return null;
+        try {
+            messageService.deleteMessage(Integer.parseInt(id));
+            log.info("deleted message: {}", id);
+            return success(null, 20010);
+        } catch (NumberFormatException e) {
+            return error(e, HttpStatus.BAD_REQUEST, 40001);
+        } catch (MessageEmptyException e) {
+            return error(e, HttpStatus.BAD_REQUEST, 40002);
+        }
     }
 }

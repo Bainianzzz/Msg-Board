@@ -1,7 +1,6 @@
 package com.lab.crud.service;
 
 import com.lab.crud.exception.MessageEmptyException;
-import com.lab.crud.exception.MessageIncompleteException;
 import com.lab.crud.exception.MessageNotFoundException;
 import com.lab.crud.exception.UserNotFoundException;
 import com.lab.crud.pojo.Message;
@@ -15,7 +14,7 @@ public interface MessageService {
 
     void addMessage(Message message) throws MessageEmptyException, UserNotFoundException, MessageNotFoundException;
 
-    void updateMessage(Message message);
+    void updateMessage(Message message) throws MessageEmptyException;
 
-    void deleteMessage(int id);
+    void deleteMessage(int id) throws MessageEmptyException;
 }
