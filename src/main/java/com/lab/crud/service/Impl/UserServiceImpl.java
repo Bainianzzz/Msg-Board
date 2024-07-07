@@ -1,6 +1,5 @@
 package com.lab.crud.service.Impl;
 
-import com.lab.crud.exception.RegisterInfoBlankException;
 import com.lab.crud.exception.UserNotFoundException;
 import com.lab.crud.mapper.UserMapper;
 import com.lab.crud.pojo.User;

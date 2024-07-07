@@ -2,7 +2,6 @@ package com.lab.crud.interceptor;
 
 import com.lab.crud.exception.TokenDyingException;
 import com.lab.crud.utils.JwtUtils;
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.security.SignatureException;

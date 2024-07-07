@@ -3,5 +3,23 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lab.crud.mapper.MessageMapper">
+    <insert id="insertMessage">
 
+    </insert>
+
+    <update id="updateMessage">
+
+    </update>
+
+    <delete id="deleteMessageById">
+
+    </delete>
+
+    <select id="selectMessagesById" resultType="com.lab.crud.pojo.Message">
+
+    </select>
+
+    <select id="selectMessagesByUserId" resultType="com.lab.crud.pojo.Message">
+
+    </select>
 </mapper>
