@@ -54,14 +54,15 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public void updateMessage(Message message) throws MessageEmptyException {
-        if (messageMapper.selectMessageById(message.getId()) == null) throw new MessageEmptyException();
+    public void updateMessage(Message message) throws MessageNotFoundException {
+        Message m = messageMapper.selectMessageById(message.getPid());
+        if (m == null) throw new MessageNotFoundException();
         messageMapper.updateMessage(message);
     }
 
     @Override
-    public void deleteMessage(int id) throws MessageEmptyException {
-        if (messageMapper.selectMessageById(id) == null) throw new MessageEmptyException();
+    public void deleteMessage(int id) throws MessageNotFoundException {
+        if (messageMapper.selectMessageById(id) == null) throw new MessageNotFoundException();
         messageMapper.deleteMessageById(id);
     }
 }

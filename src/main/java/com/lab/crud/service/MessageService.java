@@ -14,7 +14,7 @@ public interface MessageService {
 
     void addMessage(Message message) throws MessageEmptyException, UserNotFoundException, MessageNotFoundException;
 
-    void updateMessage(Message message) throws MessageEmptyException;
+    void updateMessage(Message message) throws MessageNotFoundException;
 
-    void deleteMessage(int id) throws MessageEmptyException;
+    void deleteMessage(int id) throws MessageNotFoundException;
 }

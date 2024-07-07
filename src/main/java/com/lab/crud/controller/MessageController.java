@@ -79,7 +79,7 @@ public class MessageController extends ObjectController {
             return success(null, 20009);
         } catch (NumberFormatException e) {
             return error(e, HttpStatus.BAD_REQUEST, 40001);
-        } catch (MessageEmptyException e) {
+        } catch (MessageNotFoundException e) {
             return error(e, HttpStatus.BAD_REQUEST, 40002);
         }
     }
@@ -93,7 +93,7 @@ public class MessageController extends ObjectController {
             return success(null, 20010);
         } catch (NumberFormatException e) {
             return error(e, HttpStatus.BAD_REQUEST, 40001);
-        } catch (MessageEmptyException e) {
+        } catch (MessageNotFoundException e) {
             return error(e, HttpStatus.BAD_REQUEST, 40002);
         }
     }
