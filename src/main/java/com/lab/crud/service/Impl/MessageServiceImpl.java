@@ -55,8 +55,7 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public void updateMessage(Message message) throws MessageNotFoundException {
-        Message m = messageMapper.selectMessageById(message.getPid());
-        if (m == null) throw new MessageNotFoundException();
+        if (messageMapper.selectMessageById(message.getId()) == null) throw new MessageNotFoundException();
         messageMapper.updateMessage(message);
     }
 

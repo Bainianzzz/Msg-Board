@@ -26,6 +26,12 @@
         where id=#{id};
     </delete>
 
+    <delete id="deleteMessageByUId">
+        delete
+        from messages
+        where uid=#{uid};
+    </delete>
+
     <select id="selectMessageByPid" resultType="com.lab.crud.pojo.Message">
         select id, uid, pid, detail, update_time
         from messages

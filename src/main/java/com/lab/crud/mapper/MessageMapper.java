@@ -13,4 +13,5 @@ public interface MessageMapper {
     void insertMessage(Message message);
     void updateMessage(Message message);
     void deleteMessageById(int id);
+    void deleteMessageByUId(int uid);
 }
