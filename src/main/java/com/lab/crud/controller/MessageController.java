@@ -1,6 +1,9 @@
 package com.lab.crud.controller;
 
+import com.lab.crud.exception.MessageEmptyException;
+import com.lab.crud.exception.MessageIncompleteException;
 import com.lab.crud.exception.MessageNotFoundException;
+import com.lab.crud.exception.UserNotFoundException;
 import com.lab.crud.pojo.Info;
 import com.lab.crud.pojo.Message;
 import com.lab.crud.service.MessageService;
@@ -24,42 +27,45 @@ public class MessageController extends ObjectController {
         try {
             List<Message> messages = new ArrayList<>();
             messageService.getMessagesById(Integer.parseInt(id), messages);
-            if (!messages.isEmpty()) return ResponseEntity.status(HttpStatus.OK).
-                    body(new Info(20006, "success", messages));
-            else {
-                log.error("Message Not Found");
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).
-                        body(new Info(40402, "Message Not Found", null));
-            }
+            if (!messages.isEmpty()) {
+                log.info("get message by id: {}", id);
+                return success(messages, 20006);
+            } else return error(new MessageNotFoundException(), HttpStatus.NOT_FOUND, 40402);
         } catch (NumberFormatException e) {
-            log.error(e.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).
-                    body(new Info(40001, e.getMessage(), null));
+            return error(e, HttpStatus.BAD_REQUEST, 40001);
         }
     }
 
     //获取用户的所有留言
     @GetMapping("/user/{uid}")
-    public ResponseEntity<Info> getMessageByUserId(@PathVariable String uid,String page) {
+    public ResponseEntity<Info> getMessageByUserId(@PathVariable String uid, String page) {
         try {
             List<Message> messages = messageService.getMessagesByUid(Integer.parseInt(uid), Integer.parseInt(page));
-            return ResponseEntity.status(HttpStatus.OK).
-                    body(new Info(20007, "success", messages));
-        }catch (NumberFormatException e) {
-            log.error(e.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).
-                    body(new Info(40001, e.getMessage(), null));
+            log.info("get all messages from user {}", uid);
+            return success(messages, 20007);
+        } catch (NumberFormatException e) {
+            return error(e, HttpStatus.BAD_REQUEST, 40001);
         } catch (MessageNotFoundException e) {
-            log.error(e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).
-                    body(new Info(40402, e.getMessage(), null));
+            return error(e, HttpStatus.NOT_FOUND, 40402);
         }
     }
 
     //发布留言或者回复留言
     @PostMapping
     public ResponseEntity<Info> addMessage(@RequestBody Message message) {
-        return null;
+        try {
+            messageService.addMessage(message);
+            log.info("{} add message", message.getUid());
+            return success(null, 20008);
+        } catch (UserNotFoundException e) {
+            return error(e, HttpStatus.NOT_FOUND, 40401);
+        } catch (MessageNotFoundException e) {
+            return error(e, HttpStatus.NOT_FOUND, 40402);
+        }catch (NullPointerException e){
+            return error(new MessageIncompleteException(), HttpStatus.BAD_REQUEST, 40003);
+        } catch (MessageEmptyException e) {
+            return error(e, HttpStatus.BAD_REQUEST, 40002);
+        }
     }
 
     //修改留言信息或者撤回留言（软删除）

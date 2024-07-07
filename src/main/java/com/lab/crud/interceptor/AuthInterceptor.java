@@ -65,10 +65,10 @@ public class AuthInterceptor implements HandlerInterceptor {
         }
     }
 
-    //对于POST、PUT、DELETE方法，进行额外的身份验证
+    //对于PUT、DELETE方法，进行额外的身份验证
     private boolean IdentityVerification(Claims payload, HttpServletRequest request, HttpServletResponse response) {
         switch (RequestMethod.valueOf(request.getMethod())) {
-            case POST, PUT, DELETE:
+            case PUT, DELETE:
                 String userId = payload.get("id").toString();
                 String pathInfo = request.getRequestURI();
                 String[] path = pathInfo.split("/");

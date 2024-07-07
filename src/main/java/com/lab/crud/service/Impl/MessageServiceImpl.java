@@ -1,8 +1,13 @@
 package com.lab.crud.service.Impl;
 
+import com.lab.crud.exception.MessageEmptyException;
+import com.lab.crud.exception.MessageIncompleteException;
 import com.lab.crud.exception.MessageNotFoundException;
+import com.lab.crud.exception.UserNotFoundException;
 import com.lab.crud.mapper.MessageMapper;
+import com.lab.crud.mapper.UserMapper;
 import com.lab.crud.pojo.Message;
+import com.lab.crud.pojo.User;
 import com.lab.crud.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +18,8 @@ import java.util.List;
 public class MessageServiceImpl implements MessageService {
     @Autowired
     private MessageMapper messageMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     //递归查询出某条留言及其所有子留言
@@ -22,9 +29,11 @@ public class MessageServiceImpl implements MessageService {
 
         messages.add(message);
 
-        Message childMessage = messageMapper.selectMessageByPid(message.getId());
+        Message[] childMessage = messageMapper.selectMessageByPid(message.getId());
         if (childMessage == null) return;
-        getMessagesById(childMessage.getId(), messages);
+        for (Message child : childMessage) {
+            getMessagesById(child.getId(), messages);
+        }
     }
 
     @Override
@@ -37,8 +46,13 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public void addMessage(Message message) {
-
+    public void addMessage(Message message) throws MessageEmptyException, UserNotFoundException, MessageNotFoundException {
+        if (message.getDetail().isBlank()) throw new MessageEmptyException();
+        User user = userMapper.getUserById(message.getUid());
+        if (user == null) throw new UserNotFoundException();
+        Message parentMessage = messageMapper.selectMessageById(message.getPid());
+        if (parentMessage == null) throw new MessageNotFoundException();
+        messageMapper.insertMessage(message);
     }
 
     @Override

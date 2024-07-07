@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface MessageMapper {
     Message selectMessageById(int id);
-    Message selectMessageByPid(int pid);
+    Message[] selectMessageByPid(int pid);
     List<Message> selectMessagesByUId(int uid,int begin,int end);
     void insertMessage(Message message);
     void updateMessage(Message message);

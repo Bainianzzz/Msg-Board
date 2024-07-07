@@ -21,16 +21,11 @@ public class UserController extends ObjectController{
         try {
             User user = userService.getUserById(Integer.parseInt(id));
             log.info("getUser: {}", user.getId());
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(new Info(20003, "success", user));
+            return success(user,20003);
         } catch (UserNotFoundException e) {
-            log.error(e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).
-                    body(new Info(40401, e.getMessage(), null));
+            return error(e, HttpStatus.NOT_FOUND, 40401);
         } catch (NumberFormatException e) {
-            log.error(e.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).
-                    body(new Info(40001, e.getMessage(), null));
+            return error(e,HttpStatus.BAD_REQUEST,40001);
         }
     }
 
@@ -38,21 +33,14 @@ public class UserController extends ObjectController{
     @PutMapping("/{id}")
     public ResponseEntity<Info> updateUser(@RequestBody User user, @PathVariable String id) {
         try {
-            if (user.getId() <= 0) {
-                user.setId(Integer.parseInt(id));
-            }
+            if (user.getId() <= 0) user.setId(Integer.parseInt(id));
             userService.updateUser(user);
             log.info("updateUser: {}", user.getId());
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(new Info(20004, "success", null));
+            return success(null,20004);
         } catch (UserNotFoundException e) {
-            log.error(e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).
-                    body(new Info(40401, e.getMessage(), null));
+            return error(e, HttpStatus.NOT_FOUND, 40401);
         } catch (NumberFormatException e) {
-            log.error(e.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).
-                    body(new Info(40001, e.getMessage(), null));
+            return error(e,HttpStatus.BAD_REQUEST,40001);
         }
     }
 
@@ -62,16 +50,11 @@ public class UserController extends ObjectController{
         try {
             userService.deleteUserById(Integer.parseInt(id));
             log.info("deleteUser: {}", id);
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(new Info(20005, "success", null));
+            return success(null,20005);
         } catch (UserNotFoundException e) {
-            log.error(e.getMessage());
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).
-                    body(new Info(40401, e.getMessage(), null));
+            return error(e, HttpStatus.NOT_FOUND, 40401);
         } catch (NumberFormatException e) {
-            log.error(e.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).
-                    body(new Info(40001, e.getMessage(), null));
+            return error(e,HttpStatus.BAD_REQUEST,40001);
         }
     }
 }

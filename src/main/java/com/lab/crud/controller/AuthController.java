@@ -27,12 +27,10 @@ public class AuthController extends ObjectController {
         try {
             Map<String, String> tokens = authService.checkPasswd(phone, password);
             log.info("{} successfully logged in", phone);
-            return ResponseEntity.status(HttpStatus.OK).
-                    body(new Info(20001, "success", tokens));
+            return success(tokens, 20001);
         } catch (LoginException e) {
             log.info("{} failed to login", phone);
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).
-                    body(new Info(40101, e.getMessage(), null));
+            return error(e, HttpStatus.UNAUTHORIZED, 40101);
         }
     }
 
@@ -42,16 +40,13 @@ public class AuthController extends ObjectController {
         try {
             authService.createUser(user.getPhone(), user.getPassword());
             log.info("created user {}", user.getPhone());
-            return ResponseEntity.status(HttpStatus.OK)
-                    .body(new Info(20002, "success", null));
+            return success(null, 20002);
         } catch (RegisterInfoBlankException e) {
             log.error(e.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).
-                    body(new Info(40002, e.getMessage(), null));
+            return error(e, HttpStatus.BAD_REQUEST, 40002);
         } catch (DuplicateKeyException e) {
             log.error(e.getMessage());
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).
-                    body(new Info(40003, e.getMessage(), null));
+            return error(e, HttpStatus.BAD_REQUEST, 40003);
         }
     }
 }

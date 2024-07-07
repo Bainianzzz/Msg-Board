@@ -4,7 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lab.crud.mapper.MessageMapper">
     <insert id="insertMessage">
-
+        insert into messages(uid, pid, detail)
+        values (#{uid}, #{pid}, #{detail});
     </insert>
 
     <update id="updateMessage">
@@ -18,18 +19,18 @@
     <select id="selectMessageByPid" resultType="com.lab.crud.pojo.Message">
         select id, uid, pid, detail, update_time, is_delete
         from messages
-        where pid=#{pid}
+        where pid=#{pid};
     </select>
 
     <select id="selectMessagesByUId" resultType="com.lab.crud.pojo.Message">
         select id, uid, pid, detail, update_time, is_delete
         from messages
         where uid=#{uid}
-        limit #{end} offset #{begin}
+        limit #{end} offset #{begin};
     </select>
     <select id="selectMessageById" resultType="com.lab.crud.pojo.Message">
         select id, uid, pid, detail, update_time, is_delete
         from messages
-        where id=#{id}
+        where id=#{id};
     </select>
 </mapper>
