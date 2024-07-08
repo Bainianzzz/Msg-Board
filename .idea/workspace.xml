@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b98a9291-7ebc-4bbb-a69e-017ad93fe8df" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/aspect/MessageSenderFinder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a195e502-8024-4cb8-b7a2-cedbc02121ef.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/a195e502-8024-4cb8-b7a2-cedbc02121ef.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/config/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/utils/VerificationUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/utils/VerificationUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/lab/crud/config/WebConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lab/crud/config/WebConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/lab/crud/controller/AuthController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lab/crud/controller/AuthController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/lab/crud/service/AuthService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lab/crud/service/AuthService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/lab/crud/service/Impl/AuthServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/lab/crud/service/Impl/AuthServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/controller/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/controller/MessageController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/Impl/MessageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/Impl/MessageServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/MessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/lab/crud/service/MessageService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +67,7 @@
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Spring Boot.CrudApplication.executor": "Run",
-    "git-widget-placeholder": "bainian",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -242,16 +239,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/lab/crud/utils/VerificationUtils.java</url>
-          <line>74</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

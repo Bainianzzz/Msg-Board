@@ -88,13 +88,14 @@ public class MessageController extends ObjectController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Info> deleteMessage(@PathVariable String id) {
         try {
-            messageService.deleteMessage(Integer.parseInt(id));
-            log.info("deleted message: {}", id);
-            return success(null, 20010);
+            List<Message> messages = new ArrayList<>();
+            messageService.getMessagesById(Integer.parseInt(id), messages);
+            if (!messages.isEmpty()) {
+                messageService.deleteMessage(messages);
+                return success(null, 20010);
+            } else return error(new MessageNotFoundException(), HttpStatus.NOT_FOUND, 40402);
         } catch (NumberFormatException e) {
             return error(e, HttpStatus.BAD_REQUEST, 40001);
-        } catch (MessageNotFoundException e) {
-            return error(e, HttpStatus.BAD_REQUEST, 40002);
         }
     }
 }

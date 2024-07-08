@@ -16,5 +16,5 @@ public interface MessageService {
 
     void updateMessage(Message message) throws MessageNotFoundException;
 
-    void deleteMessage(int id) throws MessageNotFoundException;
+    void deleteMessage(List<Message> messages);
 }

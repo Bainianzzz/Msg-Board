@@ -10,6 +10,7 @@ import com.lab.crud.pojo.User;
 import com.lab.crud.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -48,8 +49,10 @@ public class MessageServiceImpl implements MessageService {
         if (message.getDetail().isBlank()) throw new MessageEmptyException();
         User user = userMapper.getUserById(message.getUid());
         if (user == null) throw new UserNotFoundException();
-        Message parentMessage = messageMapper.selectMessageById(message.getPid());
-        if (parentMessage == null) throw new MessageNotFoundException();
+        if (message.getPid() != null){
+            Message parentMessage = messageMapper.selectMessageById(message.getPid());
+            if (parentMessage == null) throw new MessageNotFoundException();
+        }
         messageMapper.insertMessage(message);
     }
 
@@ -59,9 +62,11 @@ public class MessageServiceImpl implements MessageService {
         messageMapper.updateMessage(message);
     }
 
+    @Transactional
     @Override
-    public void deleteMessage(int id) throws MessageNotFoundException {
-        if (messageMapper.selectMessageById(id) == null) throw new MessageNotFoundException();
-        messageMapper.deleteMessageById(id);
+    public void deleteMessage(List<Message> messages){
+        for (Message message : messages) {
+            messageMapper.deleteMessageById(message.getId());
+        }
     }
 }
