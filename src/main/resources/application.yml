@@ -3,9 +3,9 @@ spring:
     name: crud
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/msg_board
+    url: jdbc:mysql://localhost:3306/${DBName}
     username: root
-    password: 050109
+    password: ${password}
     type: com.alibaba.druid.pool.DruidDataSource
 
 mybatis:
@@ -16,4 +16,4 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
 
 jwt:
-  signingKey: tNLuNxM4tmOWUsO1oMmKwV5/tfel3G56IZlRe02y9gM=
+  signingKey: ${SigningKey}
